@@ -26,7 +26,7 @@ async function saveImage(url, path, idx, lens) {
     console.log(
       red(`======${idx}/${lens}====== ${fileName} ======保存失败=====`),
     );
-    log(url);
+    log(`${path} -> ` + url);
   }
 }
 module.exports = saveImage;

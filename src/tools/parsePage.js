@@ -18,7 +18,7 @@ module.exports = async (path, host) => {
           await saveImage(imgSrc, path, i + 1, lens);
         }
       } catch (e) {
-        log(host + href);
+        log(`${path} -> ` + host + href);
       }
     } else {
       console.log(`======${i + 1}/${lens}======不需要保存=======`);
