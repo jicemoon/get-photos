@@ -3,7 +3,7 @@ const fse = require('fs-extra');
 const { red } = require('chalk');
 const log = require('./savelog');
 const rp = require('request-promise');
-const fileRoot = resolve(__dirname, '../../photos');
+const { getOutputFold } = require('./utils');
 
 /**
  * 保存图片
@@ -11,8 +11,7 @@ const fileRoot = resolve(__dirname, '../../photos');
  * @param { string } path
  */
 async function saveImage(url, path, idx, lens) {
-  const fold = path.replace(/^\//g, '').split(/\//)[0];
-  const foldPath = resolve(fileRoot, fold);
+  const [foldPath] = getOutputFold(path);
   await fse.mkdirs(foldPath);
   const urlList = url.split(/\//);
   const fileName = urlList[urlList.length - 1];
