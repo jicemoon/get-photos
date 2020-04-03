@@ -81,7 +81,7 @@ const inputConfigs = [
         '页图片 ------------',
       );
       try {
-        await parsePage(`${path}${file}`, host);
+        await parsePage(`${path}${file}`, host, path);
         console.log(
           '------------ 第',
           i,
@@ -96,7 +96,7 @@ const inputConfigs = [
         str += pageCount;
         str += ' 页图片 保存错误 ------------';
         console.log(red(str));
-        log(`${path} -> ` + host + path + file);
+        log(`${path} -> ${host + path + file}`);
       }
     }
   } catch (e) {

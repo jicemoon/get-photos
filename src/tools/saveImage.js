@@ -10,7 +10,7 @@ const { getOutputFold } = require('./utils');
  * @param { string } url
  * @param { string } path
  */
-async function saveImage(url, path, idx, lens) {
+async function saveImage(url, path, idx, lens, classify) {
   const [foldPath] = getOutputFold(path);
   await fse.mkdirs(foldPath);
   const urlList = url.split(/\//);
@@ -25,7 +25,7 @@ async function saveImage(url, path, idx, lens) {
     console.log(
       red(`======${idx}/${lens}====== ${fileName} ======保存失败=====`),
     );
-    log(`${path} -> ` + url);
+    log(`${classify} -> ${url}`);
   }
 }
 module.exports = saveImage;

@@ -6,7 +6,7 @@ module.exports = async host => {
   const $ = await getPage(host);
   const hrefEles = $('#header .menu .nav.cate a');
   const lens = hrefEles.length;
-  const reg = /^\//;
+  const reg = /^\/+/;
   const rtn = [];
   for (let i = 0; i < lens; i++) {
     const ele = hrefEles[i];
@@ -14,7 +14,7 @@ module.exports = async host => {
     if (reg.test(href)) {
       rtn.push({
         name: ele.firstChild.nodeValue,
-        value: href.replace(reg, ''),
+        value: href.replace(reg, '').replace(/\/+$/, ''),
       });
     }
   }
