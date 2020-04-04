@@ -11,7 +11,7 @@ const { getOutputFold } = require('./utils');
  * @param { string } path
  */
 async function saveImage(url, path, idx, lens, classify) {
-  const [foldPath] = getOutputFold(path);
+  const [foldPath] = getOutputFold(classify);
   await fse.mkdirs(foldPath);
   const urlList = url.split(/\//);
   const fileName = urlList[urlList.length - 1];

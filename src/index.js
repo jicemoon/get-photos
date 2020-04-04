@@ -12,7 +12,7 @@ const inputConfigs = [
     type: 'list',
     name: 'inputPath',
     message: '请输入要下载的分类',
-    default: function() {
+    default: function () {
       return 'meinv';
     },
     // validate: function (val) {
@@ -24,7 +24,7 @@ const inputConfigs = [
     type: 'number',
     name: 'pageStart',
     message: '请输入起始页数',
-    default: function() {
+    default: function () {
       return 1;
     },
   },
@@ -40,7 +40,7 @@ const inputConfigs = [
     throw new Error('请输入下载路径, 如 meinv');
   }
   const path = `/${inputPath}`;
-  const [outPath, outFoldName] = getOutputFold(path);
+  const [outPath, outFoldName] = getOutputFold(inputPath);
   // 已存在输出目录, 是否继续
   if (fse.existsSync(outPath)) {
     const { isContinue } = await inquirer.prompt([
