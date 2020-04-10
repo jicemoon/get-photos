@@ -1,22 +1,24 @@
-const getPage = require('./getPage');
+const { resolve } = require('path');
+const { readdirSync, lstatSync } = require('fs-extra');
 /**
  * 获取所有分类
  */
-module.exports = async host => {
-  const $ = await getPage(host);
-  const hrefEles = $('#header .menu .nav.cate a');
-  const lens = hrefEles.length;
-  const reg = /^\/+/;
-  const rtn = [];
-  for (let i = 0; i < lens; i++) {
-    const ele = hrefEles[i];
-    const href = ele.attribs.href;
-    if (reg.test(href)) {
-      rtn.push({
-        name: ele.firstChild.nodeValue,
-        value: href.replace(reg, '').replace(/\/+$/, ''),
+module.exports = (jsonRootFold) => {
+  const fileList = readdirSync(jsonRootFold);
+  const folds = [];
+  fileList.forEach((value) => {
+    const absPath = resolve(jsonRootFold, value);
+    if (lstatSync(absPath).isDirectory()) {
+      folds.push({
+        name: value,
+        value: absPath + '|||' + value,
       });
     }
-  }
-  return rtn;
+  });
+  return {
+    type: 'list',
+    name: 'inputPath',
+    message: '请选择要下载的文件夹',
+    choices: folds,
+  };
 };

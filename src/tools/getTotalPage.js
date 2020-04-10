@@ -1,12 +1,17 @@
-const getPage = require('./getPage');
-module.exports = async (path, host) => {
-  const $ = await getPage(host + path);
-  let ele = $('#main .page .prev');
-  ele = ele[0].prev;
-  const page = ele.firstChild.nodeValue;
-  if (/^\d+$/.test(page)) {
-    return page - 0;
-  } else {
-    throw new Error('获取总页数失败');
-  }
+const { parse, resolve } = require('path');
+const { readdirSync } = require('fs-extra');
+module.exports = (foldPath) => {
+  const fileList = readdirSync(foldPath);
+  const jsonFiles = [];
+  fileList.forEach((fn) => {
+    const p = parse(fn);
+    if (p.ext && p.ext.toLowerCase() === '.json') {
+      const fullPath = resolve(foldPath, fn);
+      jsonFiles.push({
+        name: p.name,
+        path: fullPath,
+      });
+    }
+  });
+  return jsonFiles;
 };
