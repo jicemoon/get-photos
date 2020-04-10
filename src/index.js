@@ -10,7 +10,7 @@ const getClassify = require('./tools/getClassify');
 const log = require('./tools/savelog');
 
 (async () => {
-  // 获取分类列表
+  // 获取分类列表;
   const jsonRootFold = resolve(__dirname, '../json');
   const classify = getClassify(jsonRootFold);
   const { inputPath } = await inquirer.prompt([classify]);
@@ -43,25 +43,25 @@ const log = require('./tools/savelog');
         i,
         '/',
         pageCount,
-        `页(${file.name})图片 ------------`,
+        `页(${file.base})图片 ------------`,
       );
       try {
-        await parsePage(file.fullPath, file.name, i);
+        await parsePage(file.path, foldName, i);
         console.log(
           '------------ 第',
           i,
           '/',
           pageCount,
-          `页(${file.name})图片 保存完成------------`,
+          `页(${file.base})图片 保存完成------------`,
         );
       } catch (e) {
         let str = '------------ 第 ';
         str += i;
         str += ' / ';
         str += pageCount;
-        str += `页(${file.name})图片 保存错误------------`;
+        str += `页(${file.base})图片 保存错误------------`;
         console.log(red(str));
-        log(`${file.name} => ${file.fullPath}`);
+        log(`${file.base} => ${file.path}`);
       }
     }
   } catch (e) {

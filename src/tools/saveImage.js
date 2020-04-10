@@ -25,7 +25,7 @@ async function saveImage(url, idx, lens, classify, pageIdx) {
     console.log(
       red(`======${idx}/${lens}====== ${fileName} ======保存失败=====`),
     );
-    log(`${classify} -> ${pageIdx}-${idx} => ${url}`);
+    log(`${classify} -> [${pageIdx}_${idx}] => ${url}`);
   }
 }
 module.exports = saveImage;

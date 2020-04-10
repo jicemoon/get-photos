@@ -9,6 +9,7 @@ module.exports = (foldPath) => {
       const fullPath = resolve(foldPath, fn);
       jsonFiles.push({
         name: p.name,
+        base: p.base,
         path: fullPath,
       });
     }
