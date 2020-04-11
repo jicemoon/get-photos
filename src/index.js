@@ -46,7 +46,7 @@ const log = require('./tools/savelog');
         `页(${file.base})图片 ------------`,
       );
       try {
-        await parsePage(file.path, foldName, i);
+        await parsePage(file.path, foldName, file.name);
         console.log(
           '------------ 第',
           i,

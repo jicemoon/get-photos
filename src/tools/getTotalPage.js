@@ -14,5 +14,8 @@ module.exports = (foldPath) => {
       });
     }
   });
+  fileList.sort((a, b) => {
+    return a > b ? 1 : -1;
+  });
   return jsonFiles;
 };

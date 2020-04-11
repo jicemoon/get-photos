@@ -4,7 +4,7 @@ const { readJSONSync } = require('fs-extra');
 const sizeList = ['6k', '5k', '4k', '3k', '2k', 'o', 'k'];
 module.exports = async (path, classify, pageIdx) => {
   const json = readJSONSync(path);
-  const photos = json.photos.photo || [];
+  const photos = (json.photos || json.photoset || {}).photo || [];
   const lens = photos.length;
   for (let idx = 0; idx < lens; idx++) {
     const photo = photos[idx];
