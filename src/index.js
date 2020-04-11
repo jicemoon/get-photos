@@ -33,7 +33,7 @@ const log = require('./tools/savelog');
     }
   }
   const pageList = getTotalPage(foldPath);
-  console.log(pageList);
+  // console.log(pageList);
   const pageCount = pageList.length;
   try {
     for (let i = 1; i <= pageCount; i++) {
